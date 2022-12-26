@@ -1,0 +1,58 @@
+<div class="m-5" style="padding-bottom: 20px">
+  <div>
+    <input
+      #query
+      (keyup)="search(query.value)"
+      placeholder="Search by Order ID..."
+      type="text"
+      class="form-control filter"
+    />
+    <select
+      style="float: right"
+      (change)="changeStatus(category.value)"
+      name="category"
+      required
+      #category
+      class="form-control category text-dark"
+      [ngModel]="statusParam ? statusParam : ''"
+    >
+      <option class="text-secondary" value="">Filter By Status</option>
+      <option value="processing">Processing</option>
+      <option value="dispatched">Dispatched</option>
+      <option value="delivered">Delivered</option>
+    </select>
+  </div>
+  <table *ngIf="loaded; else spinner" class="table">
+    <thead>
+      <tr>
+        <th>Order Id</th>
+        <th class="date-header" (click)="orderByDate()">
+          Order Date
+          <span style="font-size: x-large; margin-left: 0.5rem">
+            <i *ngIf="dsc" class="bi bi-sort-alpha-up"></i>
+            <i *ngIf="!dsc" class="bi bi-sort-alpha-down"></i>
+          </span>
+        </th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        id="tr"
+        *ngFor="let id of availableOrders"
+        (click)="goToOrderDetail(id)"
+        [class]="localOrders[id].status"
+      >
+        <td>{{ id | uppercase }}</td>
+        <td>{{ localOrders[id].orderDate }}</td>
+        <td>
+          {{ localOrders[id].status | uppercase }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #spinner>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+  <!-- <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a> -->
+</div>

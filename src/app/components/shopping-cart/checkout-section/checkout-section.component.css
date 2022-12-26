@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+}
+.payment {
+  margin-top: 2rem;
+}
+.lead {
+  font-weight: 400;
+}
+.card-img-top {
+  height: 286px;
+  width: 286px;
+}
+.split {
+  width: 50%;
+}
+.split-2 {
+  width: 66%;
+}
+.split-3 {
+  width: 33%;
+}
+.form-section {
+  margin-top: 2rem;
+}
+.split-6 {
+  width: 60%;
+}
+.split-5 {
+  width: 25%;
+}
+.split-75 {
+  width: 75%;
+}
+.split-4 {
+  width: 40%;
+}
+input {
+  font-weight: lighter;
+}
+@media (min-width: 768px) {
+  .payment {
+    margin-top: 0;
+    margin-left: 2rem;
+  }
+}

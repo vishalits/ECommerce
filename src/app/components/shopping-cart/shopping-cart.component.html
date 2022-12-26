@@ -1,0 +1,16 @@
+<div (click)="closeCart()" class="outer-box"></div>
+
+<div *ngIf="displayCart; else noCart" class="inner-box">
+  <app-cart-section class="section"></app-cart-section>
+  <app-checkout-section class="section"></app-checkout-section>
+</div>
+<ng-template #noCart>
+  <div (click)="closeCart()" class="inner-box">
+    <img
+      class="m-auto"
+      height="50%"
+      src="../../../assets/empty-cart.png"
+      alt="empty-cart"
+    />
+  </div>
+</ng-template>

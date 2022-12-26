@@ -1,0 +1,32 @@
+@import "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0";
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+.prod-container {
+  width: 90vw;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-evenly;
+  padding-bottom: 2rem;
+}
+button {
+  margin: 0 0.2rem;
+}
+img:hover {
+  transform: scale(1.05);
+  transition: ease-in-out 0.3s;
+}
+.card {
+  overflow: hidden;
+}
+.card-title {
+  cursor: pointer;
+}
+.icon {
+  font-size: x-large;
+  float: right;
+}

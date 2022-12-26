@@ -1,0 +1,116 @@
+<div class="main">
+  <div *ngIf="loaded; else spinner" class="content">
+    <div class="upper">
+      <div class="image-section">
+        <div class="image">
+          <img [src]="selectedImage" [alt]="selectedImageAlt" />
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="title">
+          <p>{{ prod.title }}</p>
+          <!-- <p class="fw-light fs-5">{{ prod.category }}</p> -->
+        </div>
+
+        <!-- <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+        aliquid quae beatae fugiat soluta officiis accusantium temporibus rem,
+        commodi consequuntur harum deleniti perferendis quos! Consectetur nulla
+        earum sapiente dolorum reprehenderit?
+      </p> -->
+        <ul class="color-section">
+          <li
+            *ngFor="let color of prod.colors"
+            class="color"
+            [ngStyle]="{ 'background-color': color.code }"
+          ></li>
+        </ul>
+        <p class="price-section">
+          <span class="actual-price lead text-muted">₹{{ prod.price }} </span>
+          <span class="discount fw-bold text-success">75% off</span>
+          <span class="lead float-end"
+            ><span class="discounted-price text-primary"
+              >₹ {{ discountedPrice }}/-</span
+            >Only</span
+          >
+        </p>
+
+        <div class="actions">
+          <!-- <button
+            [ngStyle]="{
+              'box-shadow': '0px 0px 30px #' + selectedColorCode
+            }"
+            class="btn btn-primary"
+          >
+            Buy Now
+          </button> -->
+          <button (click)="buyNow(prod.id)" class="btn btn-primary">
+            Buy Now
+          </button>
+
+          <span
+            *ngIf="!addedToCart"
+            (click)="addToCart(prod.id)"
+            class="float-end text-primary material-symbols-outlined"
+            >add_shopping_cart</span
+          >
+          <span
+            *ngIf="addedToCart"
+            (click)="goToCart()"
+            class="float-end text-primary material-symbols-outlined"
+            >shopping_cart_checkout</span
+          >
+        </div>
+
+        <div *ngIf="prod.offers.length" class="offers-section">
+          <p class="h5">Offers Available</p>
+          <p>use credit card for 29% off effective price 710/-</p>
+          <p>use debit card for 20% off effective price 800/-</p>
+        </div>
+
+        <div class="warranty-info">
+          <img [src]="prod.brandLogo" [alt]="prod.brandName" class="brand" />
+          <span
+            >{{ prod.brandName | titlecase }} 1 Year International
+            Warranty</span
+          >
+        </div>
+
+        <div class="technical-specs">
+          <p class="h5">Technical Specifications</p>
+          <table class="table table-striped">
+            <tbody>
+              <tr *ngFor="let spec of prod.techSpecs">
+                <td>{{ spec[0] }}</td>
+                <td>{{ spec[1] | titlecase }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="description">
+          <p class="h5">Description</p>
+          <li *ngFor="let item of prod.description">{{ item }}</li>
+        </ul>
+
+        <div class="box-contents offers-section">
+          <p class="h5">Box Contents</p>
+          <p class="mt-2">
+            {{ prod.boxContains | titlecase }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="lower">
+      <div class="my-3 brand-images">
+        <p class="">From the manufacturer</p>
+        <div class="my-3" *ngFor="let i of prod.displayImages">
+          <img [src]="i" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #spinner>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+</div>

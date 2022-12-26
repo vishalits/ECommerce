@@ -1,0 +1,178 @@
+@import "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
+* {
+  margin: 0;
+}
+.main {
+  width: 100vw;
+}
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.content {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.image-section {
+  width: 100%;
+  padding: 1rem;
+}
+.actions span {
+  cursor: pointer;
+}
+img {
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  object-fit: cover;
+}
+.title {
+  text-align: center;
+  font-size: large;
+  margin-bottom: 0rem;
+}
+.description {
+  text-align: justify;
+  margin-bottom: 0;
+  list-style: none;
+  padding: 0;
+}
+.description li {
+  padding-bottom: 0.3rem;
+}
+.description li::first-letter {
+  font-size: 1.2rem;
+  font-weight: 550;
+}
+
+.price-section span {
+  margin: 0 0.5rem;
+}
+.price-section {
+  margin-bottom: 0;
+}
+button {
+  box-shadow: 0px 0px 30px #1f3627ae;
+}
+.actual-price {
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+.discounted-price {
+  font-weight: 550;
+}
+.color-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+  margin-top: -1rem;
+}
+.color {
+  width: 2rem;
+  height: 2rem;
+  list-style: none;
+  border-radius: 50%;
+  background-color: black;
+  border: 2px solid rgb(14, 177, 236);
+}
+.offers-section P {
+  margin-bottom: 0.1rem;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
+  font-size: xx-large;
+}
+.warranty-info {
+  text-align: left;
+  font-weight: 550;
+  margin: 0 0.5rem;
+}
+.warranty-info img {
+  height: 30px;
+  width: 30px;
+  object-fit: fill;
+  margin: 0;
+  margin-right: 1rem;
+}
+.actions {
+  padding: 0.6rem 1rem;
+}
+
+.lower {
+  padding-bottom: 1rem;
+}
+
+.brand-images p {
+  font-size: 22px;
+  font-weight: 450;
+}
+@media (orientation: landscape) {
+  .upper {
+    display: flex;
+    justify-content: space-around;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+    padding-bottom: 2rem;
+    max-height: 100vh;
+  }
+  .image-section {
+    width: 40%;
+  }
+  .detail-section {
+    margin-top: 2rem;
+    width: 50%;
+    gap: 2rem;
+    overflow-y: scroll;
+    padding-left: 5%;
+    margin-right: 5rem;
+  }
+  .detail-section::-webkit-scrollbar {
+    display: none;
+  }
+  .color-section li {
+    border-width: 5px;
+    height: 40px;
+    width: 40px;
+    margin-top: -1.5rem;
+  }
+
+  .title {
+    font-size: xx-large;
+    line-height: 40px;
+  }
+  .actions button {
+    padding: 0.7rem 1rem;
+    font-size: large;
+  }
+  .price-section span:not(.discount) {
+    font-size: 2rem;
+  }
+
+  .lower {
+    padding: 2rem;
+  }
+  .brand-images img {
+    object-fit: contain;
+    height: 80vh;
+  }
+  .brand-images p {
+    margin-bottom: 2rem;
+    font-size: xx-large;
+  }
+  button {
+    box-shadow: 0px 0px 50px #1f3627cd;
+  }
+
+  .description li {
+    padding-bottom: 0.6rem;
+  }
+  .description li::first-letter {
+    font-size: 1.5rem;
+    font-weight: 550;
+  }
+}

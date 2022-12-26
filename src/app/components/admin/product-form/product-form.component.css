@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+}
+.form-container {
+  min-width: 50vw;
+  max-width: 768px;
+}
+.card-img-top {
+  height: 286px;
+  width: 286px;
+}

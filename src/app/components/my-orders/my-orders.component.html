@@ -1,0 +1,44 @@
+<div *ngIf="showOrders; else noOrders" class="">
+  <div *ngIf="showFeedback">
+    <app-feedback-modal
+      (reloadParent)="reloadPage()"
+      (closeModal)="toggleFeedback()"
+      [orderId]="feedbackOrderId"
+    ></app-feedback-modal>
+  </div>
+  <div class="order-container">
+    <p class="display-5 fw-medium p-3">My Orders</p>
+    <div class="order" *ngFor="let order of ordersArray">
+      <p class="order-heading" (click)="showDetails(order.orderId)">
+        {{ order.status }} on {{ order.orderDate
+        }}<i class="fw-bold float-end bi bi-chevron-right"></i>
+      </p>
+      <div class="product" *ngFor="let p of order.productsTitleArray">
+        <p>{{ p }}</p>
+      </div>
+      <div class="feedback-trigger">
+        <button *ngIf="!order.rating" (click)="toggleFeedback(order.orderId)">
+          Rate & Feedback
+        </button>
+        <div *ngIf="order.rating">
+          <span class="text-warning" *ngFor="let i of [1, 2, 3, 4, 5]">
+            <i
+              class="bi p-1"
+              [ngClass]="[i <= order.rating ? 'bi-star-fill' : 'bi-star']"
+            ></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noOrders>
+  <div class="img-container">
+    <img
+      class="text-center"
+      height="50%"
+      src="../../../assets/empty-orders.png"
+      alt="empty-cart"
+    />
+  </div>
+</ng-template>

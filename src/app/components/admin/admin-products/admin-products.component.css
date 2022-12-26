@@ -1,0 +1,10 @@
+.filter {
+  width: auto;
+  display: inline;
+  margin-right: 1rem;
+}
+.category {
+  width: 20vw;
+  display: inline;
+  margin-left: 1rem;
+}

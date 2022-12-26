@@ -1,0 +1,45 @@
+<div class="cart-container">
+  <div class="cart">
+    <div *ngFor="let cartItem of cartProductsList" class="card">
+      <div class="info">
+        <p class="title">{{ cartItem.title }}</p>
+        <p>{{ cartItem.price | currency: "INR":"symbol" }}</p>
+        <p>{{ cartItem.category }}</p>
+      </div>
+      <div class="controls">
+        <p class="total">{{ cartItem.total | currency: "INR":"symbol" }}</p>
+        <div class="actions">
+          <button
+            (click)="modifyCart(cartItem.id, '+')"
+            class="btn material-symbols-outlined"
+          >
+            add_circle
+          </button>
+          <span class="btn">{{ cartItem.count }}</span>
+          <button
+            (click)="modifyCart(cartItem.id, '-')"
+            class="btn material-symbols-outlined"
+          >
+            do_not_disturb_on
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-info">
+    <p class="lead">Summary</p>
+    <p class="cart-total">
+      Cart Total <span>{{ totalAmount | currency: "INR":"symbol" }}</span>
+    </p>
+    <p class="cart-total">
+      GST (18%)<span>{{ gst | currency: "INR":"symbol" }}</span>
+    </p>
+    <p class="cart-total">
+      Delivery Charge
+      <span>{{ deliveryCharge | currency: "INR":"symbol" }}</span>
+    </p>
+    <p class="grand-total">
+      Payable Amount <span>{{ payableAmount | currency: "INR":"symbol" }}</span>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "the-tech-shop"
+  },
+  "targets": {
+    "the-tech-shop": {
+      "hosting": {
+        "angular-project": [
+          "the-tech-shop"
+        ]
+      }
+    }
+  }
+}

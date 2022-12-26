@@ -1,0 +1,28 @@
+<div (click)="modalCloseHandler()" class="backdrop"></div>
+<div class="alert-box">
+  <div>
+    <p>Rate Your Purchase</p>
+
+    <span *ngFor="let i of [1, 2, 3, 4, 5]">
+      <i
+        (mouseenter)="setFilledStar(i)"
+        (mouseleave)="clearFilledStar()"
+        (click)="setRating(i)"
+        class="bi p-1 text-warning"
+        [class]="setStarType(i)"
+      ></i>
+    </span>
+  </div>
+  <div class="action">
+    <button
+      [disabled]="!localRating"
+      (click)="sendRating()"
+      class="btn btn-sm btn-warning bg-warning bg-gradient"
+    >
+      Rate
+    </button>
+    <button (click)="modalCloseHandler()" class="btn btn-sm btn-secondary">
+      Later
+    </button>
+  </div>
+</div>

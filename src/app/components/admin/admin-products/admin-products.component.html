@@ -1,0 +1,56 @@
+<div class="m-5" style="padding-bottom: 20px">
+  <div>
+    <input
+      #query
+      (keyup)="search(query.value)"
+      placeholder="Search..."
+      type="text"
+      class="form-control filter"
+    />
+    <select
+      style="float: right"
+      (change)="changeCategory(category.value)"
+      ngModel
+      name="category"
+      required
+      #category
+      class="form-control category text-dark"
+    >
+      <option value="clear"></option>
+      <option class="text-dark" value="smartphone">SmartPhone</option>
+      <option class="text-dark" value="smartwatch">Smartwatch</option>
+      <option class="text-dark" value="headphone">Headphone</option>
+      <option class="text-dark" value="laptop">Laptop</option>
+      <option class="text-dark" value="tablet">Tablet</option>
+    </select>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of availableProducts">
+        <td>{{ p.title }}</td>
+        <td>{{ p.category | titlecase }}</td>
+        <td>{{ p.price | currency: "INR":"symbol" }}</td>
+        <td class="d-flex justify-content-center">
+          <button (click)="goToForm(p.id)" class="btn btn-primary py-1">
+            Edit
+          </button>
+          <button
+            (click)="deleteProduct(p.id)"
+            class="btn btn-danger ms-2 py-1"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</div>

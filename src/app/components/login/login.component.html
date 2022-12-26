@@ -1,0 +1,59 @@
+<div class="hideme form-component" *ngIf="!isLoading; else loadingSpinner">
+  <app-alert
+    [message]="error"
+    *ngIf="error"
+    (close)="closeHandler()"
+  ></app-alert>
+
+  <!-- Login Form -->
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <div class="login">
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="email">Email address</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          ngModel
+          name="email"
+          required
+          email
+        />
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+        />
+      </div>
+
+      <!-- Submit button -->
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="authForm.invalid"
+      >
+        {{ displayLogin ? "Login" : "Register" }}
+      </button>
+      <button
+        type="button"
+        (click)="switchMode()"
+        class="btn btn-secondary mx-2"
+      >
+        Switch to {{ displayLogin ? "Register" : "Login" }}
+      </button>
+    </div>
+  </form>
+</div>
+<ng-template #loadingSpinner>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

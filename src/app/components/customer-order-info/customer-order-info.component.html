@@ -1,0 +1,91 @@
+<div *ngIf="!loadingState" class="container" style="padding-bottom: 1rem">
+  <p
+    class="lead text-center text-secondary fw-normal"
+    style="margin-bottom: '1.5rem'"
+  >
+    Order Id :
+    <span
+      [ngStyle]="{
+        color:
+          status != 'delivered' && status != 'processing'
+            ? 'blue'
+            : status === 'delivered'
+            ? 'green'
+            : 'grey'
+      }"
+      >{{ orderId }}</span
+    >
+  </p>
+
+  <div class="cart">
+    <p class="lead">Products</p>
+    <div *ngFor="let orderItem of cartValue.products">
+      <div *ngIf="orderItem.id" class="card">
+        <div class="info">
+          <p class="title">{{ orderItem.title }}</p>
+          <p>{{ orderItem.price | currency: "INR":"symbol" }}</p>
+          <p>{{ orderItem.category }}</p>
+        </div>
+        <div class="controls">
+          <p class="total">
+            {{ orderItem.price * orderItem.count | currency: "INR":"symbol" }}
+          </p>
+          <div class="actions">
+            <span class="btn lead text-white font-larger"
+              >{{ orderItem.count }} units</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-info">
+      <p class="lead">Summary</p>
+      <p class="cart-total">
+        Cart Total
+        <span class="float-end">{{
+          cartValue.totalValue | currency: "INR":"symbol"
+        }}</span>
+      </p>
+      <p class="cart-total">
+        GST (18%)<span class="float-end">{{
+          cartValue.gst | currency: "INR":"symbol"
+        }}</span>
+      </p>
+      <p class="cart-total">
+        Delivery Charge
+        <span class="float-end">{{ 600 | currency: "INR":"symbol" }}</span>
+      </p>
+      <p class="grand-total">
+        Payable Amount
+        <span class="float-end">{{
+          cartValue.payableAmount | currency: "INR":"symbol"
+        }}</span>
+      </p>
+    </div>
+
+    <div class="cart-info">
+      <p class="lead">Deliver to</p>
+      <p class="cart-total">
+        {{ addressDetails.name }} (+91 {{ addressDetails.phone }})
+      </p>
+      <p class="cart-total">{{ addressDetails.street }}</p>
+      <p class="cart-total">
+        {{ addressDetails.state }}, {{ addressDetails.country }}
+      </p>
+      <p class="cart-total">Pincode {{ addressDetails.pincode }}</p>
+    </div>
+    <div class="cart-info">
+      <p class="fw-bold">
+        Ordered on {{ orderDate }}
+        <span class="fw-normal">( {{ duration }} days ago)</span>
+        <span class="float-end">
+          {{ status }}
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+<div *ngIf="loadingState">
+  <app-loading-spinner></app-loading-spinner>
+</div>

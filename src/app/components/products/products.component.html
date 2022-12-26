@@ -1,0 +1,57 @@
+<div *ngIf="products" class="prod-container">
+  <div *ngFor="let product of products" class="card-container">
+    <div class="card" style="width: 18rem">
+      <img class="card-img-top" [src]="product.imageUrl" alt="Product Image" />
+      <div class="card-body">
+        <h4 (click)="navigateToDetails(product.id)" class="card-title">
+          {{ product.title | titlecase }}
+          <span class="icon material-symbols-outlined"> read_more </span>
+        </h4>
+        <div class="d-flex justify-content-between">
+          <p class="card-text">
+            {{ product.category | titlecase }}
+          </p>
+          <h5 class="card-title">
+            {{ product.price | currency: "INR":"symbol" }}
+          </h5>
+        </div>
+        <button
+          *ngIf="!isAdded(product.id); else cartAction"
+          (click)="addToCartHandler(product.id)"
+          class="m-0 float-end btn btn-primary"
+        >
+          Add to Cart
+        </button>
+        <ng-template #cartAction>
+          <div class="d-flex float-end" style="max-width: 300px">
+            <button
+              (click)="decrementCart(product.id)"
+              class="btn btn-primary px-3 me-2"
+            >
+              -
+            </button>
+
+            <div class="form-outline">
+              <span class="text-center form-control active">{{
+                isAdded(product.id)
+              }}</span>
+
+              <div class="form-notch">
+                <div class="form-notch-leading" style="width: 9px"></div>
+                <div class="form-notch-middle" style="width: 56px"></div>
+                <div class="form-notch-trailing"></div>
+              </div>
+            </div>
+
+            <button
+              (click)="incrementCart(product.id)"
+              class="btn btn-primary px-3 ms-2"
+            >
+              +
+            </button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

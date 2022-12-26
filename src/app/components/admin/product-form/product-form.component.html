@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="form-container">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group my-3">
+        <label for="title">Title</label>
+        <input
+          #title="ngModel"
+          [(ngModel)]="currentProduct.title"
+          name="title"
+          type="text"
+          id="title"
+          class="form-control"
+          required
+        />
+        <div
+          class="alert alert-danger my-1 py-1 text-center"
+          *ngIf="title.touched && title.invalid"
+        >
+          Title is required
+        </div>
+      </div>
+      <div class="form-group my-3">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text me-2">₹</span>
+          </div>
+          <input
+            [min]="0"
+            [(ngModel)]="currentProduct.price"
+            required
+            #price="ngModel"
+            name="price"
+            type="text"
+            id="price"
+            class="form-control"
+            aria-label="Amount (to the nearest dollar)"
+          />
+        </div>
+        <div
+          class="alert alert-danger my-1 py-1 text-center"
+          *ngIf="price.touched && price.invalid"
+        >
+          <div *ngIf="price.errors?.['required']">Price is required</div>
+          <div *ngIf="price.errors?.['min']">Price should be 0 or higher</div>
+        </div>
+      </div>
+      <div class="form-group my-3">
+        <label for="category">Category</label>
+        <select
+          required
+          #category="ngModel"
+          [(ngModel)]="currentProduct.category"
+          name="category"
+          id="category"
+          class="form-control"
+        >
+          <option value=""></option>
+          <option *ngFor="let c of categories | keyvalue" [value]="c.key">
+            {{ c.value }}
+          </option>
+        </select>
+        <div
+          class="alert alert-danger my-1 py-1 text-center"
+          *ngIf="category.touched && category.invalid"
+        >
+          category is required
+        </div>
+      </div>
+      <div class="form-group my-3">
+        <label for="imageUrl">Image URL</label>
+        <input
+          [(ngModel)]="currentProduct.imageUrl"
+          required
+          #imageUrl="ngModel"
+          name="imageUrl"
+          type="text"
+          id="imageUrl"
+          class="form-control"
+        />
+        <div
+          class="alert alert-danger my-1 py-1 text-center"
+          *ngIf="imageUrl.touched && imageUrl.errors?.['required']"
+        >
+          Image URL is required
+        </div>
+      </div>
+      <button [disabled]="f.invalid" class="btn btn-primary my-3">Save</button>
+    </form>
+  </div>
+  <div class="card-container">
+    <div class="card" style="width: 18rem">
+      <img
+        class="card-img-top"
+        [src]="
+          imageUrl.value ||
+          'https://dummyimage.com/286x286/454145/fff.jpg&text=Product+Image+Here'
+        "
+        alt="Product Image"
+      />
+      <div class="card-body">
+        <h4 class="card-title">{{ title.value || "Title" | titlecase }}</h4>
+        <div class="d-flex justify-content-between">
+          <p class="card-text">
+            {{ category.value || "Category" | titlecase }}
+          </p>
+          <h5 class="card-title">
+            {{ price.value || "00" | currency: "INR":"symbol" }}
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
